@@ -126,10 +126,23 @@ def get_args():
     parser.add_argument('-sharps', action='store_true')
     parser.add_argument('-flats', action='store_true')
     parser.add_argument('--neck-length', type=int, action='store', default=12)
+    parser.add_argument('--no-welcome', action='store_true')
     return  parser.parse_args()
+
+def print_welcome():
+    print('On each round you will be given a set of fret numbers, one for each guitar string.')
+    print('Your goal is to enter the correct note for each string, going from top (high e string) to bottom (low E string).')
+    print('Rules:')
+    print('\t1. Notes are case insensitive; That means, for example that both "A#" and "a#" are acceptable answers.')
+    print('\t2. Enter the notes separated by spaces! for example: A B# C Db G F')
+    input('Press "ENTER" when you are ready...')
+    time.sleep(1)
+
 
 def main():
     args = get_args()
+    if not args.no_welcome:
+        print_welcome()
     user_choice = None
     while user_choice != 'q':
         run_game(args)
